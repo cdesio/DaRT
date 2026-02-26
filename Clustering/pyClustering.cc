@@ -1,8 +1,8 @@
 #include <vector>
 #include "ClusteringAlgorithm.hh"
 
-#include <pybind11.h>
-#include <stl.h>
+#include <pybind11/pybind11.h>
+#include <pybind11/stl.h>
 #include <stdint.h>
 #include <stdlib.h>
 #include <iostream>

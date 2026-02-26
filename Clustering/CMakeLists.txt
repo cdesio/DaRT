@@ -18,10 +18,7 @@ endif()
 # set(pybind11_ROOT ${CONDA_PREFIX})
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
-include_directories(${CMAKE_PREFIX_PATH}/lib/python3.${outVar}/site-packages/pybind11/include/pybind11/)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src)
-
-set(pybind11_DIR ${CMAKE_PREFIX_PATH}/share/cmake/pybind11)
 
 include(cmake/CheckGit.cmake)
 CheckGitSetup()

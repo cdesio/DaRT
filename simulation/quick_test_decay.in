@@ -1,0 +1,12 @@
+/run/verbose 1
+/control/verbose 1
+
+/det/setSize 300 nm
+/det/dkill 9 nm
+/run/numberOfThreads 4
+
+/run/initialize
+
+/scheduler/endTime 5 nanosecond
+/run/printProgress 10
+/run/beamOn 1

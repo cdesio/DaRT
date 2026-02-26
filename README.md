@@ -216,3 +216,55 @@ This makes all the scripts needed to run the simulation and clustering all in on
     ./runPhotonScript_1.sh etc
     ```
     the simulation will run, then the secondary and then clustering
+
+
+## Decay Pipeline (Steel Seed + Concentric Cylinders)
+
+This repository includes a standalone decay generator at `decay_simulation/` for
+the steel-seed geometry with concentric cylindrical volumes. Keep it separate
+from `simulation/` and use it only to produce phase-space input for `-decayPS`.
+Quick-test macros tracked in git:
+- `decay_simulation/Ra224_quick_test.in`
+- `simulation/quick_test_decay.in`
+
+### One-time build
+
+Build decay simulation:
+```
+cd decay_simulation
+mkdir -p build
+cd build
+cmake ..
+make -j
+```
+
+Build DNA damage simulation:
+```
+cd simulation
+mkdir -p build
+cd build
+cmake ..
+make -j
+```
+
+Build clustering module (in `clustering` conda env):
+```
+conda activate clustering
+cd Clustering
+mkdir -p build
+cd build
+cmake ..
+make -j
+```
+
+### Run full decay -> damage -> clustering chain
+
+From repository root:
+```
+./run_decay_pipeline.sh
+```
+
+This script runs:
+1. `decay_simulation/build/dart` with `Ra224_quick_test.in` to generate `decay_quick_test.bin`.
+2. `simulation/build/rbe` with `quick_test_decay.in` and `-decayPS decay_quick_test.bin`.
+3. `Clustering/run.py` with `--simulationType decay` and auto-set `PYTHONPATH=Clustering/build`.

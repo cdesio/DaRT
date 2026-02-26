@@ -1,0 +1,11 @@
+.DS_Store
+
+# Local build/output directories
+build/
+simulation/build/
+photon_simulation/build/
+decay_simulation/build/
+
+# Python cache
+__pycache__/
+*.pyc
